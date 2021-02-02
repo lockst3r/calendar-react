@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
-
+import moment from 'moment';
 import './modal.scss';
 
 class Modal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        title: '',
+        date: moment(new Date()).format('YYYY-MM-DD'),
+        startTime: '',
+        endTime: '',
+        description: '',
+    }
+}
+
+handleChange = (event) => {
+  const { name, value } = event.target;
+  this.setState({
+      [name]: value
+    })
+}
 
 
     render() {
-
+      const { closeModal } = this.props;
         return (
             <div className="modal overlay">
                 <div className="modal__content">
                     <div className="create-event">
-                        <button className="create-event__close-btn">+</button>
+                        <button className="create-event__close-btn" onClick={closeModal}>+</button>
                         <form className="event-form">
                             <input type="text"
                                 name="title"
