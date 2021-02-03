@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Hour from '../hour/Hour';
 
 import './day.scss';
 
 
-const Day = ({ dataDay, dayEvents }) => {
+const Day = ({ dataDay, dayEvents, changeStatusEvent, removeEvent }) => {
     const hours = Array(24).fill().map((val, index) => index);
+    
+    
+  
+
 
     return (
         <div className="calendar__day" data-day={dataDay}>
@@ -18,6 +22,8 @@ const Day = ({ dataDay, dayEvents }) => {
                         key={dataDay + hour}
                         dataHour={hour}
                         hourEvents={hourEvents}
+                        changeStatusEvent={changeStatusEvent}
+                        removeEvent={removeEvent}
                     />
                 )
             })}

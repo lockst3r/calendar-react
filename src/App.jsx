@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/header/Header.jsx";
 import Calendar from "./components/calendar/Calendar.jsx";
 
+
 import { getWeekStartDate, generateWeekRange } from "../src/utils/dateUtils.js";
 
 import "./common.scss";
@@ -9,6 +10,8 @@ import "./common.scss";
 const App = () => {
   const [today, setToday] = useState(new Date());
   const [isOpenModalWindow, setIsOpenModalWindow] = useState(false);
+  
+
 
   const handleNextWeek = () => {
     setToday(new Date(today.setDate(today.getDate() + 7)));
