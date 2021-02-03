@@ -18,7 +18,7 @@ const Event = ({
   };
 
   const buttonStyle = {
-    marginTop: height + marginTop,
+    marginTop: height + marginTop+10,
   };
 
   return (
@@ -37,8 +37,8 @@ const Event = ({
           className="delete-event-btn"
           onClick={() => removeEvent(id)}
         >
-          <i className="fas fa-trash"></i>
-          Delete
+          <i className="fas fa-trash-alt"></i>
+          {` Delete`}
         </button>
       )}
     </>
