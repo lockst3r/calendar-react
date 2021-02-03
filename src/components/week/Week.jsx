@@ -1,7 +1,7 @@
 import React from "react";
 import Day from "../day/Day";
 import "./week.scss";
-
+import PropTypes from "prop-types";
 const Week = ({ weekDates, events, changeStatusEvent, removeEvent }) => {
   return (
     <div className="calendar__week">
@@ -28,5 +28,12 @@ const Week = ({ weekDates, events, changeStatusEvent, removeEvent }) => {
     </div>
   );
 };
+
+Week.propTypes = {
+events: PropTypes.array.isRequired,
+changeStatusEvent: PropTypes.func.isRequired,
+removeEvent: PropTypes.func.isRequired,
+weekDates: PropTypes.array.isRequired
+}
 
 export default Week;

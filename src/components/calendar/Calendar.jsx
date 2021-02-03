@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import PropTypes from "prop-types";
 import Navigation from "./../navigation/Navigation";
 import Week from "../week/Week";
 import Sidebar from "../sidebar/Sidebar";
@@ -10,7 +10,6 @@ import "./calendar.scss";
 const Calendar = ({ weekDates, openModal, closeModal }) => {
   const [events, setEvents] = useState([]);
 
- 
   const serverRequest = () => {
     fetchEvents()
       .then((events) => setEvents(events))
@@ -28,8 +27,7 @@ const Calendar = ({ weekDates, openModal, closeModal }) => {
       status: !status,
       ...event,
     };
-    updateEvent(id, updatedData)
-      .then(() => serverRequest());
+    updateEvent(id, updatedData).then(() => serverRequest());
   };
 
   const removeEvent = (id) => {
@@ -50,9 +48,17 @@ const Calendar = ({ weekDates, openModal, closeModal }) => {
           />
         </div>
       </div>
-      {openModal && <Modal closeModal={closeModal} serverRequest={serverRequest}/>}
+      {openModal && (
+        <Modal closeModal={closeModal} serverRequest={serverRequest} />
+      )}
     </section>
   );
+};
+
+Calendar.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  openModal: PropTypes.bool.isRequired,
+  weekDates: PropTypes.array.isRequired,
 };
 
 export default Calendar;

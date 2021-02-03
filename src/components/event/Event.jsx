@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import "./event.scss";
 
 const Event = ({
@@ -44,5 +44,17 @@ marginTop: height + marginTop
     </>
   );
 };
+
+Event.propTypes = {
+id: PropTypes.string.isRequired,
+changeStatusEvent: PropTypes.func.isRequired,
+height: PropTypes.number.isRequired,
+marginTop: PropTypes.number.isRequired,
+removeEvent: PropTypes.func.isRequired,
+status: PropTypes.bool.isRequired,
+time: PropTypes.string.isRequired,
+title: PropTypes.string.isRequired
+}
+
 
 export default Event;

@@ -3,6 +3,7 @@ import moment from "moment";
 import { getDateTime } from "../../utils/dateUtils";
 import "./modal.scss";
 import { createEvent } from "../../gateway/events";
+import PropTypes from "prop-types";
 
 const Modal = ({ closeModal, serverRequest }) => {
   const [title, setTitle] = useState("");
@@ -81,5 +82,10 @@ const Modal = ({ closeModal, serverRequest }) => {
     </div>
   );
 };
+
+Modal.propTypes = {
+closeModal: PropTypes.func.isRequired,
+serverRequest: PropTypes.func.isRequired
+}
 
 export default Modal;
