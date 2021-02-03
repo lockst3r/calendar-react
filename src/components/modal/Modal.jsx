@@ -12,7 +12,7 @@ const Modal = ({ closeModal, serverRequest }) => {
   const [description, setDescription] = useState("");
 
   const handleSubmit = (event) => {
-     event.preventDefault();
+    event.preventDefault();
 
     const eventFields = {
       title: title,
@@ -22,8 +22,7 @@ const Modal = ({ closeModal, serverRequest }) => {
       status: false,
     };
 
-    createEvent(eventFields);
-    serverRequest();
+    createEvent(eventFields).then(() => serverRequest());
     closeModal();
   };
 

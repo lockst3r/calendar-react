@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { months } from "../../utils/dateUtils.js";
 
-
 import "./header.scss";
 
 const Header = ({ nextWeek, prevWeek, todayWeek, weekDates, openModal }) => {

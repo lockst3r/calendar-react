@@ -1,6 +1,6 @@
 const server = "https://5ff86cd110778b001704348e.mockapi.io/api/v1/events";
 
-export const createEvent = (events) => 
+export const createEvent = (events) =>
   fetch(server, {
     method: "POST",
     headers: {

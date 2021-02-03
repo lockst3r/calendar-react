@@ -16,7 +16,6 @@ const Week = ({ weekDates, events, changeStatusEvent, removeEvent }) => {
         );
 
         return (
-          
           <Day
             key={dayStart.getDate()}
             dataDay={dayStart.getDate()}
@@ -24,7 +23,6 @@ const Week = ({ weekDates, events, changeStatusEvent, removeEvent }) => {
             changeStatusEvent={changeStatusEvent}
             removeEvent={removeEvent}
           />
-          
         );
       })}
     </div>

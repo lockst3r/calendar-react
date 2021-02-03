@@ -33,8 +33,7 @@ const Calendar = ({ weekDates, openModal, closeModal }) => {
   };
 
   const removeEvent = (id) => {
-    deleteEvent(id)
-      .then(() => serverRequest());
+    deleteEvent(id).then(() => serverRequest());
   };
 
   return (
