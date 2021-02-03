@@ -23,7 +23,8 @@
   }
   
   .delete-event-btn {
+    position: relative;
     cursor: pointer;
     border: none;
-    z-index: 44;
+    left: 20%;
   }

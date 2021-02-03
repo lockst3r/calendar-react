@@ -4,7 +4,7 @@ import { getDateTime } from "../../utils/dateUtils";
 import "./modal.scss";
 import { createEvent } from "../../gateway/events";
 
-const Modal = ({ closeModal}) => {
+const Modal = ({ closeModal, serverRequest }) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(moment(new Date()).format("YYYY-MM-DD"));
   const [startTime, setStartTime] = useState("");
@@ -12,7 +12,7 @@ const Modal = ({ closeModal}) => {
   const [description, setDescription] = useState("");
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+     event.preventDefault();
 
     const eventFields = {
       title: title,
@@ -23,6 +23,8 @@ const Modal = ({ closeModal}) => {
     };
 
     createEvent(eventFields);
+    serverRequest();
+    closeModal();
   };
 
   return (

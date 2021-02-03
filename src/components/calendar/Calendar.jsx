@@ -10,29 +10,32 @@ import "./calendar.scss";
 const Calendar = ({ weekDates, openModal, closeModal }) => {
   const [events, setEvents] = useState([]);
 
+ 
+  const serverRequest = () => {
+    fetchEvents()
+      .then((events) => setEvents(events))
+      .catch((error) => alert(error.message));
+  };
+
   useEffect(() => {
-    fetchEvents().then((res) => setEvents(res));
+    serverRequest();
   }, []);
 
   const changeStatusEvent = (id) => {
     const { status, ...event } = events.find((item) => item.id == id);
 
-   const updatedData = {
+    const updatedData = {
       status: !status,
       ...event,
     };
     updateEvent(id, updatedData)
-      .then(() => fetchEvents())
-      .then((res) => setEvents(res));
+      .then(() => serverRequest());
   };
 
-  const removeEvent = (id) =>{
-     deleteEvent(id)
-    .then(() => fetchEvents())
-    .then((res) => setEvents(res))
-  }
-
-   
+  const removeEvent = (id) => {
+    deleteEvent(id)
+      .then(() => serverRequest());
+  };
 
   return (
     <section className="calendar">
@@ -48,7 +51,7 @@ const Calendar = ({ weekDates, openModal, closeModal }) => {
           />
         </div>
       </div>
-      {openModal && <Modal closeModal={closeModal}/>}
+      {openModal && <Modal closeModal={closeModal} serverRequest={serverRequest}/>}
     </section>
   );
 };

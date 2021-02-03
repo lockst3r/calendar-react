@@ -18,7 +18,7 @@ const Event = ({
   };
 
   const buttonStyle = {
-    marginTop: height + marginTop+10,
+    marginTop: height + marginTop,
   };
 
   return (
