@@ -3,12 +3,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  
   &__content {
-    background: #fff;
+    background:#35363a;
     padding: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
+   
   }
 }
 
@@ -46,16 +47,18 @@
   &__field {
     margin: 8px;
     border: none;
+    background-color: #eee;
   }
 
   &__submit-btn {
     margin: 8px;
     margin-left: auto;
     border: none;
-    color: #fff;
-    background-color: cornflowerblue;
+    color: black;
+    background-color: #ccc;
     border: none;
     padding: 8px 16px;
     border-radius: 8px;
+    cursor: pointer;
   }
 }

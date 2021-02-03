@@ -1,9 +1,8 @@
 .event {
   position: absolute;
-  width: 80%;
-  background-color: cornflowerblue;
+  width: 100%;
+  background-color: #0d1017;
   z-index: 3;
-  border-radius: 8px;
   padding: 8px;
   color: #fff;
   cursor: pointer;
@@ -14,11 +13,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-bottom: 8px;
+    text-align: center;
   }
 
   &:hover {
     font-weight: bold;
-    background-color: red;
+    background-color: white;
+    color: black;
+  }
+
+  &__time{
+  text-align: center;
   }
 }
 
@@ -28,8 +33,7 @@
   position: absolute;
   z-index: 10;
   padding: 5px;
-  border-radius: 8px;
-  width: 80%;
+  width: 100%;
   &:hover {
     background-color: red;
   }

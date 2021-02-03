@@ -7,9 +7,6 @@
   font-size: 16px;
   font-weight: 500;
 
-  &:hover {
-    background-color: cornflowerblue;
-  }
 }
 
 .icon-button {
@@ -17,9 +14,7 @@
   border: none;
   cursor: pointer;
   background: transparent;
-  &:hover {
-    background-color: cornflowerblue;
-  }
+
 }
 
 .modal {
@@ -27,9 +22,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+ 
 
   &__content {
-    background: #fff;
+    background: #35363a;;
     padding: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
