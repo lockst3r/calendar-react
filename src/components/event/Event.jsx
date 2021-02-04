@@ -12,17 +12,18 @@ const Event = ({
   status,
   removeEvent,
 }) => {
+  
   const eventStyle = {
     height,
     marginTop,
   };
 
-const buttonStyle = {
-marginTop: height + marginTop
-}
+  const buttonStyle = {
+    marginTop: height + marginTop,
+  };
 
   return (
-        <>
+    <>
       <div
         style={eventStyle}
         className="event"
@@ -46,15 +47,14 @@ marginTop: height + marginTop
 };
 
 Event.propTypes = {
-id: PropTypes.string.isRequired,
-changeStatusEvent: PropTypes.func.isRequired,
-height: PropTypes.number.isRequired,
-marginTop: PropTypes.number.isRequired,
-removeEvent: PropTypes.func.isRequired,
-status: PropTypes.bool.isRequired,
-time: PropTypes.string.isRequired,
-title: PropTypes.string.isRequired
-}
-
+  id: PropTypes.string.isRequired,
+  changeStatusEvent: PropTypes.func.isRequired,
+  height: PropTypes.number.isRequired,
+  marginTop: PropTypes.number.isRequired,
+  removeEvent: PropTypes.func.isRequired,
+  status: PropTypes.bool.isRequired,
+  time: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default Event;

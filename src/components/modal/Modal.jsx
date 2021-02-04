@@ -84,8 +84,8 @@ const Modal = ({ closeModal, serverRequest }) => {
 };
 
 Modal.propTypes = {
-closeModal: PropTypes.func.isRequired,
-serverRequest: PropTypes.func.isRequired
-}
+  closeModal: PropTypes.func.isRequired,
+  serverRequest: PropTypes.func.isRequired,
+};
 
 export default Modal;

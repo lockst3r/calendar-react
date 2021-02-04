@@ -1,7 +1,6 @@
 import React from "react";
 import moment from "moment";
 import PropTypes from "prop-types";
-
 import "./header.scss";
 
 const Header = ({ nextWeek, prevWeek, todayWeek, weekDates, openModal }) => {
@@ -35,12 +34,11 @@ const Header = ({ nextWeek, prevWeek, todayWeek, weekDates, openModal }) => {
 };
 
 Header.propTypes = {
-nextWeek: PropTypes.func.isRequired,
-prevWeek: PropTypes.func.isRequired,
-openModal: PropTypes.func.isRequired,
-todayWeek: PropTypes.func.isRequired,
-weekDates: PropTypes.array.isRequired
-}
-
+  nextWeek: PropTypes.func.isRequired,
+  prevWeek: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  todayWeek: PropTypes.func.isRequired,
+  weekDates: PropTypes.array.isRequired,
+};
 
 export default Header;

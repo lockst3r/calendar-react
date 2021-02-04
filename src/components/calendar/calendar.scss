@@ -64,11 +64,14 @@
   &__day-number {
     font-size: 22px;
   }
+  &__day-today {
+    color: #ff0000;
+  }
 }
 
 .red-line {
   position: absolute;
   width: 100%;
-  border-top: 2px solid red;
+  border-top: 2px solid #ff0000;
   z-index: 5;
 }
