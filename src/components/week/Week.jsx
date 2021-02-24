@@ -1,30 +1,28 @@
-import React from "react";
-import Day from "../day/Day";
-import "./week.scss";
-import PropTypes from "prop-types";
+import React from 'react';
+import Day from '../day/Day';
+import './week.scss';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
-const Week = ({ weekDates, events, changeStatusEvent, removeEvent }) => {
+const Week = ({ weekDates, events, handleDeleteEvent }) => {
   return (
     <div className="calendar__week">
-      {weekDates.map((dayStart) => {
-        const dayEnd = new Date(dayStart.getTime()).setHours(
-          dayStart.getHours() + 24
-        );
+      {weekDates.map(dayStart => {
+        const dayEnd = new Date(dayStart.getTime()).setHours(dayStart.getHours() + 24);
 
         const dayEvents = events.filter(
-          (event) => event.dateFrom > dayStart && event.dateTo < dayEnd
+          event => event.dateFrom > dayStart && event.dateTo < dayEnd,
         );
-        
-        const dataRedLine = moment(dayStart).format('MMMM DD YYYY') == moment(new Date()).format('MMMM DD YYYY');
-        
+
+        const dataRedLine =
+          moment(dayStart).format('MMMM DD YYYY') == moment(new Date()).format('MMMM DD YYYY');
+
         return (
           <Day
             key={dayStart.getDate()}
             dataDay={dayStart.getDate()}
             dayEvents={dayEvents}
-            changeStatusEvent={changeStatusEvent}
-            removeEvent={removeEvent}
+            handleDeleteEvent={handleDeleteEvent}
             day={dayStart}
             dataRedLine={dataRedLine}
           />
@@ -36,8 +34,7 @@ const Week = ({ weekDates, events, changeStatusEvent, removeEvent }) => {
 
 Week.propTypes = {
   events: PropTypes.array.isRequired,
-  changeStatusEvent: PropTypes.func.isRequired,
-  removeEvent: PropTypes.func.isRequired,
+  handleDeleteEvent: PropTypes.func.isRequired,
   weekDates: PropTypes.array.isRequired,
 };
 

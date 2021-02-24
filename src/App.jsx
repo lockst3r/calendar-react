@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Header from "./components/header/Header.jsx";
-import Calendar from "./components/calendar/Calendar.jsx";
+import React, { useState } from 'react';
+import Header from './components/header/Header.jsx';
+import Calendar from './components/calendar/Calendar.jsx';
 
-import { getWeekStartDate, generateWeekRange } from "../src/utils/dateUtils.js";
+import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
 
-import "./common.scss";
+import './common.scss';
 
 const App = () => {
   const [today, setToday] = useState(new Date());
@@ -41,11 +41,7 @@ const App = () => {
         weekDates={weekDates}
         openModal={handleOpenModal}
       />
-      <Calendar
-        weekDates={weekDates}
-        openModal={isOpenModalWindow}
-        closeModal={handleCloseModal}
-      />
+      <Calendar weekDates={weekDates} openModal={isOpenModalWindow} closeModal={handleCloseModal} />
     </>
   );
 };

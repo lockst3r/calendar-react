@@ -1,37 +1,34 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import Navigation from "./../navigation/Navigation";
-import Week from "../week/Week";
-import Sidebar from "../sidebar/Sidebar";
-import { fetchEvents, updateEvent, deleteEvent } from "../../gateway/events";
-import Modal from "../modal/Modal";
-import "./calendar.scss";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import Navigation from './../navigation/Navigation';
+import Week from '../week/Week';
+import Sidebar from '../sidebar/Sidebar';
+import { fetchEvents, deleteEvent } from '../../gateway/events';
+import Modal from '../modal/Modal';
+import './calendar.scss';
+import moment from 'moment';
 
 const Calendar = ({ weekDates, openModal, closeModal }) => {
   const [events, setEvents] = useState([]);
 
-  const serverRequest = () => {
+  const getEventsList = () => {
     fetchEvents()
-      .then((events) => setEvents(events))
-      .catch((error) => alert(error.message));
+      .then(events => {
+        const dataWeek = weekDates.map(el => moment(el).format('MMMM DD YYYY'));
+        const newEvents = events.filter(({ dateFrom }) =>
+          dataWeek.includes(moment(dateFrom).format('MMMM DD YYYY')),
+        );
+        return setEvents(newEvents);
+      })
+      .catch(error => alert(error.message));
   };
 
   useEffect(() => {
-    serverRequest();
-  }, []);
+    getEventsList();
+  }, [weekDates]);
 
-  const changeStatusEvent = (id) => {
-    const { status, ...event } = events.find((item) => item.id == id);
-
-    const updatedData = {
-      status: !status,
-      ...event,
-    };
-    updateEvent(id, updatedData).then(() => serverRequest());
-  };
-
-  const removeEvent = (id) => {
-    deleteEvent(id).then(() => serverRequest());
+  const handleDeleteEvent = id => {
+    deleteEvent(id).then(() => getEventsList());
   };
 
   return (
@@ -40,17 +37,10 @@ const Calendar = ({ weekDates, openModal, closeModal }) => {
       <div className="calendar__body">
         <div className="calendar__week-container">
           <Sidebar />
-          <Week
-            weekDates={weekDates}
-            events={events}
-            changeStatusEvent={changeStatusEvent}
-            removeEvent={removeEvent}
-          />
+          <Week weekDates={weekDates} events={events} handleDeleteEvent={handleDeleteEvent} />
         </div>
       </div>
-      {openModal && (
-        <Modal closeModal={closeModal} serverRequest={serverRequest} />
-      )}
+      {openModal && <Modal closeModal={closeModal} getEventsList={getEventsList} />}
     </section>
   );
 };

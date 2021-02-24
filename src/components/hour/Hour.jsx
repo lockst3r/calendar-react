@@ -1,48 +1,35 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Event from "../event/Event";
-import { formatMins } from "../../../src/utils/dateUtils.js";
-import moment from "moment";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Event from '../event/Event';
+import { formatMins } from '../../../src/utils/dateUtils.js';
 
-const Hour = ({
-  dataHour,
-  hourEvents,
-  changeStatusEvent,
-  removeEvent,
-  dataRedLine,
-}) => {
+const Hour = ({ dataHour, hourEvents, handleDeleteEvent, dataRedLine }) => {
+  const [minutes, setMinutes] = useState(new Date().getMinutes());
+  const [hour, setHour] = useState(new Date().getHours());
 
-  const [ minutes, setMinutes] = useState(new Date().getMinutes());
-    const [ hour, setHour ] = useState(new Date().getHours());
-  
-  
-    useEffect(() => {
-      if (minutes === 60) {
-        setMinutes(0);
-        setHour(hour + 1)
-      };
-      const interval = setInterval(() => {
-        setMinutes(minutes + 1)}, 60000);
-      
-      return () => {
-        clearInterval(interval);
-      }
-    });
+  useEffect(() => {
+    if (minutes === 60) {
+      setMinutes(0);
+      setHour(hour + 1);
+    }
+    const interval = setInterval(() => {
+      setMinutes(minutes + 1);
+    }, 60000);
 
+    return () => {
+      clearInterval(interval);
+    };
+  });
 
   return (
     <div className="calendar__time-slot" data-time={dataHour + 1}>
-            {dataRedLine && dataHour == hour
-              ? <div style={{top: minutes}} className="red-line"></div>
-              : null}
+      {dataRedLine && dataHour == hour ? (
+        <div style={{ top: minutes }} className="red-line"></div>
+      ) : null}
 
       {hourEvents.map(({ id, dateFrom, dateTo, title, status }) => {
-        const eventStart = `${dateFrom.getHours()}:${formatMins(
-          dateFrom.getMinutes()
-        )}`;
-        const eventEnd = `${dateTo.getHours()}:${formatMins(
-          dateTo.getMinutes()
-        )}`;
+        const eventStart = `${dateFrom.getHours()}:${formatMins(dateFrom.getMinutes())}`;
+        const eventEnd = `${dateTo.getHours()}:${formatMins(dateTo.getMinutes())}`;
 
         return (
           <Event
@@ -52,9 +39,8 @@ const Hour = ({
             marginTop={dateFrom.getMinutes()}
             time={`${eventStart} - ${eventEnd}`}
             title={title}
-            removeEvent={removeEvent}
+            handleDeleteEvent={handleDeleteEvent}
             status={status}
-            changeStatusEvent={changeStatusEvent}
           />
         );
       })}
@@ -63,10 +49,9 @@ const Hour = ({
 };
 
 Hour.propTypes = {
-  changeStatusEvent: PropTypes.func.isRequired,
   dataHour: PropTypes.number.isRequired,
   hourEvents: PropTypes.array.isRequired,
-  removeEvent: PropTypes.func.isRequired,
+  handleDeleteEvent: PropTypes.func.isRequired,
 };
 
 export default Hour;

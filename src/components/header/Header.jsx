@@ -1,16 +1,14 @@
-import React from "react";
-import moment from "moment";
-import PropTypes from "prop-types";
-import "./header.scss";
+import React from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import './header.scss';
 
 const Header = ({ nextWeek, prevWeek, todayWeek, weekDates, openModal }) => {
-  const firstDayWeek = moment(weekDates[0]).format("MMMM");
-  const lastDayWeek = moment(weekDates[weekDates.length - 1]).format("MMMM");
+  const firstDayWeek = moment(weekDates[0]).format('MMMM');
+  const lastDayWeek = moment(weekDates[weekDates.length - 1]).format('MMMM');
 
   const textMonth =
-    firstDayWeek === lastDayWeek
-      ? `${firstDayWeek}`
-      : `${firstDayWeek} - ${lastDayWeek}`;
+    firstDayWeek === lastDayWeek ? `${firstDayWeek}` : `${firstDayWeek} - ${lastDayWeek}`;
 
   return (
     <header className="header">
