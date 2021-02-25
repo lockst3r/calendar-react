@@ -14,7 +14,7 @@ const Week = ({ weekDates, events, handleDeleteEvent }) => {
           event => event.dateFrom > dayStart && event.dateTo < dayEnd,
         );
 
-        const dataRedLine =
+        const dateDayPositionRedLine =
           moment(dayStart).format('MMMM DD YYYY') == moment(new Date()).format('MMMM DD YYYY');
 
         return (
@@ -24,7 +24,7 @@ const Week = ({ weekDates, events, handleDeleteEvent }) => {
             dayEvents={dayEvents}
             handleDeleteEvent={handleDeleteEvent}
             day={dayStart}
-            dataRedLine={dataRedLine}
+            dateDayPositionRedLine={dateDayPositionRedLine}
           />
         );
       })}

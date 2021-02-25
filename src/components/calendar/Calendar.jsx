@@ -6,20 +6,21 @@ import Sidebar from '../sidebar/Sidebar';
 import { fetchEvents, deleteEvent } from '../../gateway/events';
 import Modal from '../modal/Modal';
 import './calendar.scss';
-import moment from 'moment';
 
-const Calendar = ({ weekDates, openModal, closeModal }) => {
+const Calendar = ({ weekDates, isOpenModalWindow, handleCloseModal }) => {
   const [events, setEvents] = useState([]);
 
   const getEventsList = () => {
     fetchEvents()
-      .then(events => {
-        const dataWeek = weekDates.map(el => moment(el).format('MMMM DD YYYY'));
-        const newEvents = events.filter(({ dateFrom }) =>
-          dataWeek.includes(moment(dateFrom).format('MMMM DD YYYY')),
-        );
-        return setEvents(newEvents);
-      })
+      .then(events =>
+        setEvents(
+          events.filter(
+            event =>
+              new Date(event.dateFrom) > new Date(weekDates[0]) &&
+              new Date(event.dateFrom) < new Date(weekDates[6]),
+          ),
+        ),
+      )
       .catch(error => alert(error.message));
   };
 
@@ -40,7 +41,9 @@ const Calendar = ({ weekDates, openModal, closeModal }) => {
           <Week weekDates={weekDates} events={events} handleDeleteEvent={handleDeleteEvent} />
         </div>
       </div>
-      {openModal && <Modal closeModal={closeModal} getEventsList={getEventsList} />}
+      {isOpenModalWindow && (
+        <Modal handleCloseModal={handleCloseModal} getEventsList={getEventsList} />
+      )}
     </section>
   );
 };

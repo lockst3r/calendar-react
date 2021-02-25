@@ -5,7 +5,7 @@ import './modal.scss';
 import { createEvent } from '../../gateway/events';
 import PropTypes from 'prop-types';
 
-const Modal = ({ closeModal, getEventsList }) => {
+const Modal = ({ handleCloseModal, getEventsList }) => {
   const [inputData, setInputData] = useState({
     title: '',
     date: moment(new Date()).format('YYYY-MM-DD'),
@@ -27,14 +27,14 @@ const Modal = ({ closeModal, getEventsList }) => {
     };
 
     createEvent(eventFields).then(() => getEventsList());
-    closeModal();
+    handleCloseModal();
   };
 
   return (
     <div className="modal overlay">
       <div className="modal__content">
         <div className="create-event">
-          <button className="create-event__close-btn" onClick={closeModal}>
+          <button className="create-event__close-btn" onClick={handleCloseModal}>
             +
           </button>
           <form className="event-form" onSubmit={handleSubmit}>
@@ -83,7 +83,7 @@ const Modal = ({ closeModal, getEventsList }) => {
 };
 
 Modal.propTypes = {
-  closeModal: PropTypes.func.isRequired,
+  handleCloseModal: PropTypes.func.isRequired,
   getEventsList: PropTypes.func.isRequired,
 };
 

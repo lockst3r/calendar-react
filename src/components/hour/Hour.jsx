@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Event from '../event/Event';
 import { formatMins } from '../../../src/utils/dateUtils.js';
 
-const Hour = ({ dataHour, hourEvents, handleDeleteEvent, dataRedLine }) => {
+const Hour = ({ hourDay, hourEvents, handleDeleteEvent, dateDayPositionRedLine }) => {
   const [minutes, setMinutes] = useState(new Date().getMinutes());
   const [hour, setHour] = useState(new Date().getHours());
 
@@ -22,8 +22,8 @@ const Hour = ({ dataHour, hourEvents, handleDeleteEvent, dataRedLine }) => {
   });
 
   return (
-    <div className="calendar__time-slot" data-time={dataHour + 1}>
-      {dataRedLine && dataHour == hour ? (
+    <div className="calendar__time-slot" data-time={hourDay + 1}>
+      {dateDayPositionRedLine && hourDay == hour ? (
         <div style={{ top: minutes }} className="red-line"></div>
       ) : null}
 
@@ -49,7 +49,7 @@ const Hour = ({ dataHour, hourEvents, handleDeleteEvent, dataRedLine }) => {
 };
 
 Hour.propTypes = {
-  dataHour: PropTypes.number.isRequired,
+  hourDay: PropTypes.number.isRequired,
   hourEvents: PropTypes.array.isRequired,
   handleDeleteEvent: PropTypes.func.isRequired,
 };

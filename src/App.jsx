@@ -35,13 +35,17 @@ const App = () => {
   return (
     <>
       <Header
-        nextWeek={handleNextWeek}
-        prevWeek={handlePrevWeek}
-        todayWeek={handleTodayWeek}
+        handleNextWeek={handleNextWeek}
+        handlePrevWeek={handlePrevWeek}
+        handleTodayWeek={handleTodayWeek}
         weekDates={weekDates}
-        openModal={handleOpenModal}
+        handleOpenModal={handleOpenModal}
       />
-      <Calendar weekDates={weekDates} openModal={isOpenModalWindow} closeModal={handleCloseModal} />
+      <Calendar
+        weekDates={weekDates}
+        isOpenModalWindow={isOpenModalWindow}
+        handleCloseModal={handleCloseModal}
+      />
     </>
   );
 };

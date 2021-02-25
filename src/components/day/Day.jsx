@@ -3,7 +3,7 @@ import Hour from '../hour/Hour';
 import PropTypes from 'prop-types';
 import './day.scss';
 
-const Day = ({ dataDay, dayEvents, handleDeleteEvent, dataRedLine }) => {
+const Day = ({ dataDay, dayEvents, handleDeleteEvent, dateDayPositionRedLine }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
@@ -16,10 +16,10 @@ const Day = ({ dataDay, dayEvents, handleDeleteEvent, dataRedLine }) => {
         return (
           <Hour
             key={dataDay + hour}
-            dataHour={hour}
+            hourDay={hour}
             hourEvents={hourEvents}
             handleDeleteEvent={handleDeleteEvent}
-            dataRedLine={dataRedLine}
+            dateDayPositionRedLine={dateDayPositionRedLine}
           />
         );
       })}
